@@ -19,7 +19,7 @@ workflows:
           browser: chrome
           parallel: true
           parallelism: 1
-          command: npm run test:ci
+          command: npm run test:ci && npm run allure:report
           post-steps:
             - store_artifacts:
                 path: allure-report
