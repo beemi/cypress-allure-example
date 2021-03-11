@@ -18,19 +18,15 @@ workflows:
 
       - cypress/run:
           name: Run test and generate Allure report
-          requires:
-            - install-dependencies
+          debug: 'cypress'
           attach-workspace: true
           executor: with-chrome-and-firefox
           browser: chrome
           parallel: true
           parallelism: 1
-          command: |
-            npm run test:ci
-          post-steps:
-            - run: npm run allure:report
-            - store_artifacts:
-                path: allure-report
+          command: npm run test:ci
+          requires:
+            - install-dependencies
           filters:
             branches:
               only:
