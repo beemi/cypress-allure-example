@@ -8,7 +8,6 @@ executors:
       - image: "cypress/included:3.2.0"
 workflows:
   run-tests:
-    when: always
     jobs:
       - cypress/install:
           name: "install-dependencies"
@@ -33,16 +32,11 @@ workflows:
           browser: chrome
           parallel: true
           parallelism: 1
-          command: |
-            npm run test:ci
+          command: "npm run test:ci"
           post-steps:
-            - run: 'echo "Hello Raj"'
-            - run: |
-                if [ $? -eq 0 ]
-                then
-                  npm run allure:report
-                else
-                  npm run allure:report
-                fi
+            - run:
+                command: "npm run allure:report"
+                when: always
             - store_artifacts:
                 path: allure-report
+                when: always
