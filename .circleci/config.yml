@@ -38,6 +38,7 @@ workflows:
           requires:
             - Run tests
           pre-steps:
+            - when: always
             - run: |
                 npm run allure:report
           post-steps:
