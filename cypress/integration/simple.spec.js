@@ -38,7 +38,7 @@ describe('allure report spec', function () {
         cy.url().should("include", "/eu");
     });
 
-    it('should be on DE site', function () {
+    it.only('should be on DE site', function () {
 
         // Allure Report
         cy.allure()

@@ -8,12 +8,19 @@ executors:
       - image: "cypress/included:3.2.0"
 workflows:
   run-tests:
+    when: always
     jobs:
       - cypress/install:
           name: "install-dependencies"
           build: "npm install"
       - cypress/run:
           name: "Run tests"
+          filters:
+            branches:
+              only:
+                - main
+          requires:
+            - install-dependencies
           pre-steps:
             - run: |
                 apt update
@@ -27,24 +34,13 @@ workflows:
           parallel: true
           parallelism: 1
           command: "npm run test:ci"
-          requires:
-            - install-dependencies
-          filters:
-            branches:
-              only:
-                - main
-      - cypress/run:
-          name: "Generate allure report"
-          requires:
-            - Run tests
-          pre-steps:
-            - run: |
-                npm run allure:report
           post-steps:
+            - run: |
+                if [ $? -eq 0 ]
+                then
+                  npm run allure:report
+                else
+                  npm run allure:report
+                fi
             - store_artifacts:
                 path: allure-report
-                when: always
-          filters:
-            branches:
-              only:
-                - main
