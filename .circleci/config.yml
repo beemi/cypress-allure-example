@@ -6,7 +6,6 @@ executors:
   with-chrome-and-firefox:
     docker:
       - image: "cypress/included:3.2.0"
-
 workflows:
   run-tests:
     jobs:
