@@ -2,6 +2,7 @@
   "baseUrl": "https://trinnylondon.com",
   "pageLoadTimeout": 30000,
   "video": false,
+  "screenshotOnRunFailure": true,
   "env": {
     "allure": true
   }
