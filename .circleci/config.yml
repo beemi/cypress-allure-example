@@ -11,9 +11,9 @@ workflows:
       - cypress/install:
           name: "install-dependencies"
           build: "npm install"
-          post-steps:
-            - run: npm install -g allure-commandline
       - cypress/run:
+          pre-steps:
+            - run: npm install -g allure-commandline
           name: Run test and generate Allure report
           debug: 'cypress'
           attach-workspace: true
