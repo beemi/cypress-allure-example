@@ -4,18 +4,13 @@ orbs:
 executors:
   with-chrome-and-firefox:
     docker:
-      - image: "cypress/browsers:node14.15.0-chrome86-ff82"
+      - image: "cypress/included:3.2.0"
 workflows:
   run-tests:
     jobs:
       - cypress/install:
           name: "install-dependencies"
           build: "npm install"
-          post-steps:
-            - run: npx cypress cache path
-            - run: npx cypress cache list
-            - run: npx cypress info
-
       - cypress/run:
           name: Run test and generate Allure report
           debug: 'cypress'
