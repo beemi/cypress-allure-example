@@ -32,6 +32,11 @@ workflows:
                 path: allure-report
           requires:
             - install-dependencies
+      - cypress/run:
+          command: "npm run allure:report"
+          post-steps:
+            - store_artifacts:
+                path: allure-report    
           filters:
             branches:
               only:
