@@ -24,6 +24,6 @@
   "homepage": "https://github.com/beemi/cypress-allure-example#readme",
   "devDependencies": {
     "@shelex/cypress-allure-plugin": "2.3.6",
-    "cypress": "6.5.0"
+    "cypress": "6.6.0"
   }
 }
