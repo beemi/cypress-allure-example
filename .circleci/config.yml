@@ -33,8 +33,8 @@ workflows:
           browser: chrome
           parallel: true
           parallelism: 1
-          command: "npm run test:ci"
           post-steps:
+            - run: "npm run test:ci"
             - run: |
                 if [ $? -eq 0 ]
                 then
