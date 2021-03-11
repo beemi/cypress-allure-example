@@ -20,6 +20,8 @@ workflows:
           parallel: true
           parallelism: 1
           command: npm run test:ci
+          store_artifacts:
+            path: allure-report
           requires:
             - install-dependencies
           filters:
