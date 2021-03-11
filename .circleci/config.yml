@@ -4,7 +4,7 @@ orbs:
 executors:
   with-chrome-and-firefox:
     docker:
-      - image: "cypress/included:3.2.0"
+      - image: "cypress/included:3.8.3"
         
 workflows:
   run-tests:
