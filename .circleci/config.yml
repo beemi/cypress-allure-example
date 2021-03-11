@@ -13,11 +13,11 @@ workflows:
           build: "npm install"
       - cypress/run:
           pre-steps:
-            - run: apt update
-            - run: apt install -y default-jre
-            - run: java -version
-            - run: npm install -g allure-commandline
-            - run: allure --version
+            - run: |
+                apt update
+                apt install -y default-jre
+                java -version
+            - run: npm install -g allure-commandline && allure --version
           name: Run test and generate Allure report
           debug: 'cypress'
           attach-workspace: true
