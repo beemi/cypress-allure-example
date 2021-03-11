@@ -1,0 +1,74 @@
+# default YAML Aliases
+defaults: &defaults
+  docker:
+    - image: cypress/base:12.19.0
+  working_directory: ~/app
+  environment:
+    TERM: xterm
+    TEST_ENVIRONMENT: development
+    COUNTRY: uk
+    LANGUAGE: en
+  parallelism: 1
+# Install JRE YAML Aliases
+installJre: &installJre
+  name: Install JRE & Check Java version
+  command: |
+    apt update
+    apt install -y default-jre
+    java -version
+# Install Allure YAML Aliases
+installAllure: &installAllure
+  name: Install Allure report
+  command: |
+    npm install -g allure-commandline
+# Generate Allure HTML report
+allureGenerateHtml: &allureGenerateHtml
+  name: Generate Allure HTML Report
+  command: npm run allure:report
+  when: always
+# Allure Index report Aliases
+allureReport: &allureReport
+  path: ~/app/allure-report
+  destination: allure-report
+# Videos  Aliases
+vidoes: &videos
+  path: cypress/videos
+  destination: videos
+# Screenshot
+screenshot: &screenshot
+  path: cypress/screenshots
+  destination: screenshots
+
+version: 2.1
+jobs:
+  dev-test:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - v2-deps-{{ .Branch }}-
+            - v2-deps-
+      - run: npm ci
+      - save_cache:
+          key: v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          paths:
+            - ~/.npm
+            - ~/.cache
+      - run: *installJre
+      - run: *installAllure
+      - run:
+          name: Running E2E tests
+          command: |
+            npm run reinstall
+            npm run test:ci
+      - run: *allureGenerateHtml
+      - store_artifacts: *allureReport
+      - store_artifacts: *videos
+      - store_artifacts: *screenshot
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - dev-test

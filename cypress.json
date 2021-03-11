@@ -1,0 +1,8 @@
+{
+  "baseUrl": "https://trinnylondon.com",
+  "pageLoadTimeout": 30000,
+  "video": false,
+  "env": {
+    "allure": true
+  }
+}
