@@ -4,6 +4,7 @@
   "video": true,
   "videoUploadOnPasses": false,
   "screenshotOnRunFailure": true,
+  "retries": 1,
   "env": {
     "allure": true
   }
