@@ -5,6 +5,7 @@ executors:
   with-chrome-and-firefox:
     docker:
       - image: "cypress/included:3.2.0"
+        
 workflows:
   run-tests:
     jobs:
@@ -12,13 +13,13 @@ workflows:
           name: "install-dependencies"
           build: "npm install"
       - cypress/run:
+          name: "Run tests"
           pre-steps:
             - run: |
                 apt update
                 apt install -y default-jre
                 java -version
             - run: "npm install -g allure-commandline && allure --version"
-          name: Run test and generate Allure report
           debug: 'cypress'
           attach-workspace: true
           executor: with-chrome-and-firefox
@@ -26,17 +27,22 @@ workflows:
           parallel: true
           parallelism: 1
           command: "npm run test:ci"
-          post-steps:
-            - run: "npm run allure:report"
-            - store_artifacts:
-                path: allure-report
           requires:
             - install-dependencies
+          filters:
+            branches:
+              only:
+                - main
+  report-tests:
+    jobs:
       - cypress/run:
-          command: "npm run allure:report"
+          name: "Generate allure report"
+          pre-steps:
+            - run: |
+                npm run allure:report
           post-steps:
             - store_artifacts:
-                path: allure-report    
+                path: allure-report
           filters:
             branches:
               only:
