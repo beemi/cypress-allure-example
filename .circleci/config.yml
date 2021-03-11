@@ -18,12 +18,15 @@ workflows:
             - install-dependencies
           attach-workspace: true
           executor: cypress/browsers-chrome78-ff70
+          browser: chrome
           parallel: true
           parallelism: 1
           command: |
             npm run test:ci
           post-steps:
             - run: npm run allure:report
+            - store_artifacts:
+                path: allure-report
           filters:
             branches:
               only:
