@@ -28,10 +28,10 @@ workflows:
           debug: 'cypress'
           attach-workspace: true
           executor: with-chrome-and-firefox
-          browser: chrome
+          browser: electron
           parallel: true
           parallelism: 1
-          command: "npm run test:ci"
+          spec: cypress/integration/*.spec.js
           post-steps:
             - run:
                 command: "npm run allure:report"
