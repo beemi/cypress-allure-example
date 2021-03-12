@@ -5,6 +5,8 @@ executors:
   with-chrome-and-firefox:
     docker:
       - image: "cypress/included:6.6.0"
+    environment:
+      CIRCLECI_TOKEN: 64ba69220418c40e1a2ce27aa3bc0a00db8213c2
 workflows:
   run-tests:
     jobs:
