@@ -43,11 +43,12 @@ workflows:
                 name: "Extract History json files from previous build"
                 command: |
                   apt-get install -y jq libjq1 libonig5
-                  curl --request GET \
-                      --url https://circleci.com/api/v2/project/gh/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/${CIRCLE_PREVIOUS_BUILD_NUM}/artifacts \
-                      --header 'Circle-Token: $CIRCLE_TOKEN' | jq -r '.items[]|select(.url | contains("/allure-report/history")) | .url' >> allure_history_url.txt
 
-                  tail -f allure_history_url.txt
+                  response=$(curl --request GET \
+                      --url https://circleci.com/api/v2/project/gh/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/${CIRCLE_PREVIOUS_BUILD_NUM}/artifacts \
+                      --header 'Circle-Token: $CIRCLE_TOKEN')
+
+                  echo "$response"
                 when: always
             - run:
                 name: "Copy Allure Config into allure-results"
