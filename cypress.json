@@ -5,7 +5,7 @@
   "videoUploadOnPasses": false,
   "screenshotOnRunFailure": true,
   "retries": 1,
-  "reporter": "mochawesome",
+  "reporter": "mocha-multi-reporters",
   "reporterOptions": {
     "charts": true,
     "html": true,
