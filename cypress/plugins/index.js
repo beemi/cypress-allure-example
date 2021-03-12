@@ -11,6 +11,8 @@ module.exports = (on, config) => {
     installLogsPrinter(on, {
         // onFail, always, never
         printLogsToConsole: "always",
-        routeTrimLength: 500
+        includeSuccessfulHookLogs: true,
+        routeTrimLength: 1000,
+        outputVerbose: true
     });
 }
