@@ -34,7 +34,7 @@ workflows:
           command: npm run test:ci:mocha
           post-steps:
             - store_test_results:
-                path: reports
+                path: cypress/results
                 when: always
             - run:
                 command: "npm run allure:report"
