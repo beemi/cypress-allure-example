@@ -1,7 +1,7 @@
 {
-  "name": "Circle CI",
-  "type": "jenkins",
-  "url": "https://jenkins-dove.ct.global.com",
+  "name": "Circle Ci",
+  "type": "Circle Ci",
+  "url": "https://app.circleci.com/",
   "buildOrder": {REPORT_BUILD_NUMBER},
   "buildName": "dv-streamingserver-acceptance-tests#{REPORT_BUILD_NUMBER}",
   "buildUrl": "https://jenkins-dove.ct.global.com/job/Global%20Dove/job/dv-streamingserver-acceptance-tests/job/master/#{REPORT_BUILD_NUMBER}",

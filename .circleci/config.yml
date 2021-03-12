@@ -34,6 +34,11 @@ workflows:
           command: npm run test:ci:mocha
           post-steps:
             - run:
+                name: "Create executor.json"
+                command: |
+                  apt-get install jo
+                  jo -p name=circle ci type=circle ci url=https://app.circleci.com/ buildOrder=100  >> allure-config/executor.json
+            - run:
                 name: "Copy Allure Config into allure-results dir"
                 command: |
                   cp allure-config/* allure-results
@@ -47,4 +52,3 @@ workflows:
             - store_artifacts:
                 path: allure-report
                 when: always
-
