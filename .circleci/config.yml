@@ -4,7 +4,7 @@ orbs:
 executors:
   with-chrome-and-firefox:
     docker:
-      - image: "cypress/included:3.2.0"
+      - image: "cypress/included:6.6.0"
 workflows:
   run-tests:
     jobs:
@@ -34,11 +34,19 @@ workflows:
           command: npm run test:ci:mocha
           post-steps:
             - run:
-                name: "Create executor.json"
+                name: "Create executor.json under allure-config"
                 command: |
                   apt-get install jo
-                  jo -p name=circle ci type=circle ci url=https://app.circleci.com/ buildOrder=${CIRCLE_BUILD_NUM} buildName=${CIRCLE_BUILD_URL} buildUrl=${CIRCLE_BUILD_URL} reportUrl=${CIRCLE_BUILD_URL} reportName=Cypress Report >> allure-config/executor.json
+                  jo -p name=circle ci type=circle ci buildOrder=${CIRCLE_BUILD_NUM} buildName=${CIRCLE_BUILD_URL} buildUrl=${CIRCLE_BUILD_URL} reportUrl=${CIRCLE_BUILD_URL} reportName=Cypress Report >> allure-config/executor.json
                 when: always
+            - run:
+                name: "Extract History json files from previous build"
+                command: |
+                  curl --request GET \
+                      --url https://circleci.com/api/v2/project/gh/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/${CIRCLE_PREVIOUS_BUILD_NUM}/artifacts \
+                      --header 'Circle-Token: $CIRCLE_TOKEN' | jq -r '.items[]|select(.url | contains("/allure-report/history")) | .url' >> allure_history_url.txt
+
+                  tail -f allure_history_url.txt
             - run:
                 name: "Copy Allure Config into allure-results dir"
                 command: |
