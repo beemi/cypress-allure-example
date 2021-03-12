@@ -31,7 +31,7 @@ workflows:
           browser: electron
           parallel: true
           parallelism: 1
-          command: "npm run test:ci:mocha"
+          command: npm run test:ci:mocha
           post-steps:
             - store_test_results:
                 path: cypress/results
