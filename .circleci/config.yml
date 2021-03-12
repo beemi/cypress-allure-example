@@ -42,6 +42,7 @@ workflows:
             - run:
                 name: "Extract History json files from previous build"
                 command: |
+                  apt-get install jq
                   curl --request GET \
                       --url https://circleci.com/api/v2/project/gh/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}/${CIRCLE_PREVIOUS_BUILD_NUM}/artifacts \
                       --header 'Circle-Token: $CIRCLE_TOKEN' | jq -r '.items[]|select(.url | contains("/allure-report/history")) | .url' >> allure_history_url.txt
