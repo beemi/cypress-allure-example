@@ -38,6 +38,7 @@ workflows:
                 command: |
                   apt-get install jo
                   jo -p name=circle ci type=circle ci url=https://app.circleci.com/ buildOrder=100  >> allure-config/executor.json
+                when: always
             - run:
                 name: "Copy Allure Config into allure-results dir"
                 command: |
