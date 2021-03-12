@@ -33,6 +33,11 @@ workflows:
           parallelism: 1
           command: npm run test:ci:mocha
           post-steps:
+            - run:
+                name: "Copy Allure Config into allure-results dir"
+                command: |
+                  cp allure-config/* allure-results
+                when: always
             - store_test_results:
                 path: cypress/results
                 when: always
