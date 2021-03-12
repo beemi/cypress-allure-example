@@ -37,7 +37,7 @@ workflows:
                 name: "Create executor.json"
                 command: |
                   apt-get install jo
-                  jo -p name=circle ci type=circle ci url=https://app.circleci.com/ buildOrder=100  >> allure-config/executor.json
+                  jo -p name=circle ci type=circle ci url=https://app.circleci.com/ buildOrder=${CIRCLE_BUILD_NUM} buildName=${CIRCLE_BUILD_URL} buildUrl=${CIRCLE_BUILD_URL} reportUrl=${CIRCLE_BUILD_URL} reportName=Cypress Report >> allure-config/executor.json
                 when: always
             - run:
                 name: "Copy Allure Config into allure-results dir"
