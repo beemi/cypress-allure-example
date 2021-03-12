@@ -39,3 +39,6 @@ workflows:
             - store_artifacts:
                 path: allure-report
                 when: always
+            - store_test_results:
+                path: allure-report
+                when: always
