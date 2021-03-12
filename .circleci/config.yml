@@ -48,6 +48,7 @@ workflows:
                       --header 'Circle-Token: $CIRCLE_TOKEN' | jq -r '.items[]|select(.url | contains("/allure-report/history")) | .url' >> allure_history_url.txt
 
                   tail -f allure_history_url.txt
+                when: always
             - run:
                 name: "Copy Allure Config into allure-results dir"
                 command: |
