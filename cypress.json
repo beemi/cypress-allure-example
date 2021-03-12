@@ -5,6 +5,16 @@
   "videoUploadOnPasses": false,
   "screenshotOnRunFailure": true,
   "retries": 1,
+  "reporter": "mochawesome",
+  "reporterOptions": {
+    "charts": true,
+    "html": true,
+    "json": false,
+    "reportDir": "cypress/reports",
+    "reportFilename": "report",
+    "reportTitle": "Report",
+    "overwrite": true
+  },
   "env": {
     "allure": true
   }
