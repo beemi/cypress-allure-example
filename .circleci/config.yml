@@ -43,19 +43,19 @@ workflows:
                 name: "Extract History json files from previous build"
                 command: |
                   mkdir -p allure-results/history
-                  curl -v --url https://$(( ${CIRCLE_PREVIOUS_BUILD_NUM}-1 ))-346751002-gh.circle-artifacts.com/0/allure-report/history/categories-trend.json \
+                  curl -v -L --url https://$(( ${CIRCLE_PREVIOUS_BUILD_NUM}-1 ))-346751002-gh.circle-artifacts.com/0/allure-report/history/categories-trend.json \
                       --header 'Circle-Token: 64ba69220418c40e1a2ce27aa3bc0a00db8213c2' >> allure-results/history/categories-trend.json
 
-                  curl -v --url https://$(( ${CIRCLE_PREVIOUS_BUILD_NUM}-1 ))-346751002-gh.circle-artifacts.com/0/allure-report/history/duration-trend.json \
+                  curl -v -L --url https://$(( ${CIRCLE_PREVIOUS_BUILD_NUM}-1 ))-346751002-gh.circle-artifacts.com/0/allure-report/history/duration-trend.json \
                       --header 'Circle-Token: 64ba69220418c40e1a2ce27aa3bc0a00db8213c2' >> allure-results/history/duration-trend.json
 
-                  curl -v --url https://$(( ${CIRCLE_PREVIOUS_BUILD_NUM}-1 ))-346751002-gh.circle-artifacts.com/0/allure-report/history/history-trend.json \
+                  curl -v -L --url https://$(( ${CIRCLE_PREVIOUS_BUILD_NUM}-1 ))-346751002-gh.circle-artifacts.com/0/allure-report/history/history-trend.json \
                       --header 'Circle-Token: 64ba69220418c40e1a2ce27aa3bc0a00db8213c2' >> allure-results/history/history-trend.json
 
-                  curl -v --url https://$(( ${CIRCLE_PREVIOUS_BUILD_NUM}-1 ))-346751002-gh.circle-artifacts.com/0/allure-report/history/history.json \
+                  curl -v -L --url https://$(( ${CIRCLE_PREVIOUS_BUILD_NUM}-1 ))-346751002-gh.circle-artifacts.com/0/allure-report/history/history.json \
                       --header 'Circle-Token: 64ba69220418c40e1a2ce27aa3bc0a00db8213c2' >> allure-results/history/history.json
 
-                  curl -v --url https://$(( ${CIRCLE_PREVIOUS_BUILD_NUM}-1 ))-346751002-gh.circle-artifacts.com/0/allure-report/history/retry-trend.json \
+                  curl -v -L --url https://$(( ${CIRCLE_PREVIOUS_BUILD_NUM}-1 ))-346751002-gh.circle-artifacts.com/0/allure-report/history/retry-trend.json \
                                         --header 'Circle-Token: 64ba69220418c40e1a2ce27aa3bc0a00db8213c2' >> allure-results/history/retry-trend.json
                 when: always
             - run:
