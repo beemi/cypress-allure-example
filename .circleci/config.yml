@@ -43,7 +43,7 @@ workflows:
                 name: "Extract History json files from previous build"
                 command: |
                   mkdir -p allure-results/history
-                  EXPORT CIRCLE_PROJECT_ID=346751002
+                  export CIRCLE_PROJECT_ID=346751002
                   curl -v --url https://$(( ${CIRCLE_PREVIOUS_BUILD_NUM}-1 ))-${CI_PROJECT_ID}-gh.circle-artifacts.com/0/allure-report/history/categories-trend.json \
                       --header 'Circle-Token: 64ba69220418c40e1a2ce27aa3bc0a00db8213c2' >> allure-results/history/categories-trend.json
                 when: always
