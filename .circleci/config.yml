@@ -31,10 +31,10 @@ workflows:
           browser: electron
           parallel: true
           parallelism: 1
-          spec: cypress/integration/*.spec.js
+          command: "npm run test:ci:mocha"
           post-steps:
             - store_test_results:
-                path: allure-results
+                path: cypress/results
                 when: always
             - run:
                 command: "npm run allure:report"
