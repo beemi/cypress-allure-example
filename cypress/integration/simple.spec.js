@@ -53,7 +53,7 @@ describe('allure report spec', function () {
             .testDescription("User goes to EU site on chrome browser")
             .descriptionHtml("<h1> USER ON EU SITE </h1>")
 
-        cy.visit("/eu");
+        cy.visit("/de");
         cy.url().should("include", "/de");
     });
 });
