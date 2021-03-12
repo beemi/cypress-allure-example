@@ -35,7 +35,7 @@ describe('allure report spec', function () {
             .descriptionHtml("<h1> USER ON EU SITE </h1>")
 
         cy.visit("/eu");
-        cy.url().should("include", "/uk");
+        cy.url().should("include", "/eu");
     });
 
     it.only('should be on DE site', function () {
@@ -54,6 +54,6 @@ describe('allure report spec', function () {
             .descriptionHtml("<h1> USER ON EU SITE </h1>")
 
         cy.visit("/eu");
-        cy.url().should("include", "/uk");
+        cy.url().should("include", "/de");
     });
 });
