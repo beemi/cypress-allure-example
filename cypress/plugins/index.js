@@ -1,6 +1,7 @@
 
 const allureWriter = require('@shelex/cypress-allure-plugin/writer');
 const installLogsPrinter = require('cypress-terminal-report/src/installLogsPrinter');
+const tagify = require('cypress-tags');
 
 module.exports = (on, config) => {
 
@@ -15,4 +16,7 @@ module.exports = (on, config) => {
         routeTrimLength: 1000,
         outputVerbose: true
     });
+
+    // Cypress tag
+    on('file:preprocessor', tagify(config));
 }

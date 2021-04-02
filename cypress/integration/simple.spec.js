@@ -1,6 +1,6 @@
 describe('allure report spec', function () {
 
-    it('should be on UK site', function () {
+    it(['wip'],'should be on UK site', function () {
 
         // Allure Report
         cy.allure()
@@ -19,7 +19,7 @@ describe('allure report spec', function () {
         cy.url().should("include", "/uk");
     });
 
-    it('should be on EU site', function () {
+    it(['smoke','wip'],'should be on EU site', function () {
 
         // Allure Report
         cy.allure()
@@ -38,7 +38,7 @@ describe('allure report spec', function () {
         cy.url().should("include", "/eu");
     });
 
-    it('should be on DE site', function () {
+    it(['e2e','wip'],'should be on DE site', function () {
 
         // Allure Report
         cy.allure()

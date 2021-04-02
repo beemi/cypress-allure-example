@@ -7,7 +7,10 @@
     "clean": "rm -rf node_modules",
     "reinstall": "npm run clean && npm install",
     "test": "cypress open",
-    "test:ci": "cypress run --spec cypress/integration/*.spec.js",
+    "test:ci:wip": "CYPRESS_INCLUDE_TAGS=wip cypress run --browser chrome --spec cypress/integration/*.spec.js",
+    "test:ci:e2e": "CYPRESS_INCLUDE_TAGS=e2e cypress run --browser chrome --spec cypress/integration/*.spec.js",
+    "test:ci:not-wip": "CYPRESS_EXCLUDE_TAGS=wip cypress run --browser chrome --spec cypress/integration/*.spec.js",
+    "test:ci": "CYPRESS_INCLUDE_TAGS=smoke,wip cypress run --browser chrome --spec cypress/integration/*.spec.js",
     "test:ci:mocha": "cypress run --spec cypress/integration/*.spec.js --reporter-options configFile=reporter-config.json",
     "allure:report": "allure generate allure-results --clean -o allure-report",
     "allure:clear": "rm -r allure-results/ allure-report cypress/screenshots || true",
@@ -17,7 +20,10 @@
     "type": "git",
     "url": "git+https://github.com/beemi/cypress-allure-example.git"
   },
-  "author": "",
+  "author": {
+    "name": "Raj Beemi",
+    "email": "beemi.raja@gmail.com"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/beemi/cypress-allure-example/issues"
@@ -29,6 +35,10 @@
     "cypress-terminal-report": "^3.0.2",
     "mocha-junit-reporter": "^2.0.0",
     "mocha-multi-reporters": "^1.5.1",
-    "mochawesome": "^6.2.2"
+    "mochawesome": "^6.2.2",
+    "typescript": "^4.2.3"
+  },
+  "dependencies": {
+    "cypress-tags": "^0.0.21"
   }
 }
