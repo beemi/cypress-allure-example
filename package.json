@@ -35,7 +35,7 @@
     "cypress-terminal-report": "^3.4.2",
     "mocha-junit-reporter": "^2.0.2",
     "mocha-multi-reporters": "^1.5.1",
-    "mochawesome": "^7.1.1",
+    "mochawesome": "^7.1.2",
     "typescript": "^4.6.2"
   },
   "dependencies": {
