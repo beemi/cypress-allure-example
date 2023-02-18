@@ -31,7 +31,7 @@
   "homepage": "https://github.com/beemi/cypress-allure-example#readme",
   "devDependencies": {
     "@shelex/cypress-allure-plugin": "2.35.2",
-    "cypress": "12.5.1",
+    "cypress": "12.6.0",
     "cypress-terminal-report": "^5.0.2",
     "mocha-junit-reporter": "^2.2.0",
     "mocha-multi-reporters": "^1.5.1",
