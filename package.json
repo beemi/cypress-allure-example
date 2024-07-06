@@ -39,6 +39,6 @@
     "typescript": "^5.5.3"
   },
   "dependencies": {
-    "cypress-tags": "^0.3.0"
+    "cypress-tags": "^1.2.2"
   }
 }
